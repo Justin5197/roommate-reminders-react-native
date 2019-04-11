@@ -1,6 +1,15 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import SplashScreen from './screens/splash.screen';
+import LoginScreen from './screens/login.screen';
+
+const Login = {
+  screen : LoginScreen,
+  navigationOptions: {
+    header: null,
+    //title: 'Login'
+  }
+}
 const Splash = {
   screen: SplashScreen,
   navigationOptions: {
@@ -8,10 +17,12 @@ const Splash = {
   }
 }
 const RouteConfig = {
-  initialRoute: 'Splash'
+  initialRoute: 'Login'
+  //initialRoute: 'Splash'
 }
 const AppNavigator = createDrawerNavigator({
-  Splash: Splash
+  Login: Login
+  //Splash: Splash
 }, RouteConfig)
 
 export default createAppContainer(AppNavigator);
