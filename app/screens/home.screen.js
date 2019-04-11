@@ -5,10 +5,6 @@ export default class HomeScreen extends Component {
     super(props)
   }
 
-  static navigationOptions = {
-     title: 'Home',
-   };
-
   render() {
     return null
   }

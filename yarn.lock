@@ -2584,6 +2584,11 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
+firebase-nest@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/firebase-nest/-/firebase-nest-0.7.1.tgz#7ae7b4b68ce4b5240c0a9913726df7fe443807c3"
+  integrity sha1-eue0tozktSQMCpkTcm33/kQ4B8M=
+
 firebase@^5.9.3:
   version "5.9.3"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.9.3.tgz#76fc8df62a2d45afeba339b02b047f4a6f2680ce"

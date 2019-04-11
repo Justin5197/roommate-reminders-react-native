@@ -24,12 +24,14 @@ export default class Login extends Component {
     const { navigate } = this.props.navigation
     auth.signIn({email: this.email, password: this.password})
       .then(() => {
-        navigate('Match')
+        navigate('SetHousehold')
       })
   }
 
   render() {
     const { auth } = this.props.stores
+    const { navigate } = this.props.navigation;
+
     return (
       <Form>
         <Item style={{marginBottom: 10}} rounded>
@@ -50,6 +52,10 @@ export default class Login extends Component {
         <Button rounded block style={{marginBottom: 10}}
           onPress={this.signIn.bind(this)}>
           <Text>Login</Text>
+        </Button>
+        <Button rounded block style={{marginBottom: 10}}
+          onPress={() => navigate('SignUp')}>
+          <Text>Sign Up</Text>
         </Button>
       </Form>
     )

@@ -14,7 +14,7 @@ export default class ConfigStore {
   constructor() {
     firebase.initializeApp(config)
     this.splashTime = 1000
-    this.splashImg = require('../../images/splash.jpg')
+    this.splashImg = require('../../images/RRlogo.png')
     this.loginBG = require('../../images/login.jpg')
   }
   get SplashImg() {
