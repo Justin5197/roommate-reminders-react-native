@@ -9,6 +9,7 @@ import {
 } from 'native-base';
 import { observer } from 'mobx-react/native';
 import { observable } from 'mobx';
+import firebase from 'firebase';
 
 @observer
 export default class SignUp extends Component {
@@ -25,10 +26,22 @@ export default class SignUp extends Component {
   signUp() {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
+
     auth.signUp({email: this.email, password: this.password})
-      .then(() => {
-        navigate('Login')
-      })
+
+    var userId = firebase.auth().currentUser.uid;
+
+    firebase.database().ref('/users/' + userId).set(
+      {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        phoneNumber: this.phoneNumber,
+        email: this.email
+      }
+    )
+    .then(() => {
+      navigate('Login')
+    })
   }
 
   render() {
