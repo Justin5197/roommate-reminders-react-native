@@ -30,7 +30,7 @@ export default class Login extends Component {
 
   render() {
     const { auth } = this.props.stores
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation
 
     return (
       <Form>
