@@ -6,6 +6,8 @@ import SignUpScreen from './screens/signup.screen';
 import SetHouseholdScreen from './screens/sethousehold.screen';
 import CreateHouseholdScreen from './screens/createhousehold.screen'
 import HomeScreen from './screens/home.screen';
+import BillsScreen from './screens/bills.screen';
+import GroceriesScreen from './screens/groceries.screen';
 
 const Splash = {
   screen: SplashScreen,
@@ -49,6 +51,21 @@ const Home = {
   }
 }
 
+const Bills = {
+  screen: BillsScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const Groceries = {
+  screen: GroceriesScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+
+
+
 const RouteConfig = {
   initialRoute: 'Splash'
 }
@@ -58,7 +75,10 @@ const AppNavigator = createDrawerNavigator({
   SignUp: SignUp,
   SetHousehold: SetHousehold,
   CreateHousehold: CreateHousehold,
-  Home: Home
+  Home: Home,
+  Bills: Bills,
+  Groceries: Groceries,
+
 }, RouteConfig)
 
 export default createAppContainer(AppNavigator);
