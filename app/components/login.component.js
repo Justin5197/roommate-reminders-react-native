@@ -27,11 +27,9 @@ export default class Login extends Component {
         navigate('SetHousehold')
       })
   }
-
   render() {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
-
     return (
       <Form>
         <Item style={{marginBottom: 10}} rounded>

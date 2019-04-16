@@ -82,7 +82,7 @@ export default class SignUp extends Component {
             secureTextEntry={true}
             onChangeText={(pass) => this.password = pass}/>
         </Item>
-        <Button rounded block style={{marrginBottom: 10}}
+        <Button rounded block style={{marginBottom:   10}}
           onPress={this.signUp.bind(this)}>
           <Text>Sign Up</Text>
         </Button>
