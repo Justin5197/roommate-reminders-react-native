@@ -8,7 +8,13 @@ import CreateHouseholdScreen from './screens/createhousehold.screen'
 import HomeScreen from './screens/home.screen';
 import BillsScreen from './screens/bills.screen';
 import GroceriesScreen from './screens/groceries.screen';
-
+import EditProfileScreen from './screens/editprofile.screen';
+import RoommatesScreen from './screens/roommates.screen';
+import ViewRoommateScreen from './screens/viewroommate.screen';
+import CalendarScreen from './screens/calendar.screen';
+import AddEventScreen from './screens/addevent.screen';
+import ChoresScreen from './screens/chores.screen';
+import AddChoreScreen from './screens/addchore.screen';
 const Splash = {
   screen: SplashScreen,
   navigationOptions: {
@@ -63,7 +69,48 @@ const Groceries = {
     header: null
   }
 }
-
+const EditProfile = {
+  screen: EditProfileScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const Roommates = {
+  screen: RoommatesScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const ViewRoommate = {
+  screen: ViewRoommateScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const Calendar = {
+  screen: CalendarScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const AddEvent = {
+  screen: AddEventScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const Chores = {
+  screen: ChoresScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+const AddChore = {
+  screen: AddChoreScreen,
+  navigationOptions: {
+    header: null
+  }
+}
 
 
 const RouteConfig = {
@@ -78,6 +125,13 @@ const AppNavigator = createDrawerNavigator({
   Home: Home,
   Bills: Bills,
   Groceries: Groceries,
+  EditProfile: EditProfile,
+  Roommates: Roommates,
+  ViewRoommate: ViewRoommate,
+  Calendar: Calendar,
+  AddEvent: AddEvent,
+  Chores: Chores,
+  AddChore: AddChore,
 
 }, RouteConfig)
 
