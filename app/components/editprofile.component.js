@@ -14,15 +14,24 @@ import firebase from 'firebase';
 @observer
 
 export default class EditProfile extends Component {
+  @observable oldEmail = '';
+  @observable oldPass = '';
   @observable firstName = '';
   @observable lastName = '';
   @observable phoneNumber = '';
-  @observable email = '';
-  @observable password = '';
+  @observable newEmail = '';
+  @observable newPass = '';
   constructor(props) {
     super(props);
   }
   saveChanges() {
+    const { auth } = this.props.stores
+    const { navigate } = this.props.navigation
+    auth.signIn({email: this.oldEmail, password: this.oldPass})
+    var user = firebase.auth().currentUser
+    user.updateEmail(this.newEmail)
+
+
     // const { auth } = this.props.stores
     // const { navigate } = this.props.navigation
     //
@@ -48,6 +57,20 @@ export default class EditProfile extends Component {
 
     return(
       <Form>
+      <Item style={{marginBottom: 10}} rounded>
+        <Input style={{color: "#fff"}}
+          placeholder='Old Email'
+          placeholderTextColor="#fff"
+          onChangeText={(oldEmail) => this.oldEmail = oldEmail}/>
+      </Item>
+      <Item style={{marginBottom: 10}} rounded>
+        <Icon style={{color: "#fff"}} name='lock-open' />
+        <Input style={{color: "#fff"}}
+          placeholder='Old Password'
+          placeholderTextColor="#fff"
+          secureTextEntry={true}
+          onChangeText={(oldPass) => this.oldPass = oldPass}/>
+      </Item>
         <Item style={{marginBottom: 10}} rounded>
           <Input style={{color: "#fff"}}
             placeholder='First Name'
@@ -68,9 +91,9 @@ export default class EditProfile extends Component {
         </Item>
         <Item style={{marginBottom: 10}} rounded>
           <Input style={{color: "#fff"}}
-            placeholder='Email'
+            placeholder='New Email'
             placeholderTextColor="#fff"
-            onChangeText={(email) => this.email = email}/>
+            onChangeText={(newEmail) => this.newEmail = newEmail}/>
         </Item>
         <Item style={{marginBottom: 10}} rounded>
           <Icon style={{color: "#fff"}} name='lock-open' />
@@ -78,7 +101,7 @@ export default class EditProfile extends Component {
             placeholder='Password'
             placeholderTextColor="#fff"
             secureTextEntry={true}
-            onChangeText={(pass) => this.password = pass}/>
+            onChangeText={(newPass) => this.newPass = newPass}/>
         </Item>
         <Button rounded block style={{marginBottom:   10}}
           onPress={this.saveChanges.bind(this)}>
