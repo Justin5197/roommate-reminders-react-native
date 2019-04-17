@@ -12,7 +12,6 @@ import { observable } from 'mobx';
 import firebase from 'firebase';
 
 @observer
-
 export default class EditProfile extends Component {
   @observable oldEmail = '';
   @observable oldPass = '';
@@ -27,8 +26,15 @@ export default class EditProfile extends Component {
   saveChanges() {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
-    auth.signIn({email: this.oldEmail, password: this.oldPass})
-    var user = firebase.auth().currentUser
+
+    var user = firebase.auth().currentUser;
+
+    var credential = firebase.auth.EmailAuthProvider.credential(
+      this.oldEmail,
+      this.oldPass
+    );
+
+    user.reauthenticateAndRetrieveDataWithCredential(credential)
     user.updateEmail(this.newEmail)
 
 

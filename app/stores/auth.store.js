@@ -22,4 +22,9 @@ export default class AuthStore {
   signUp({email, password}) {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
   }
+
+  @action
+  currentUser() {
+    return firebase.auth().currentUser
+  }
 }
