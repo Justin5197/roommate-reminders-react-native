@@ -7,7 +7,6 @@ import SetHouseholdScreen from './screens/sethousehold.screen';
 import CreateHouseholdScreen from './screens/createhousehold.screen'
 import HomeScreen from './screens/home.screen';
 import BillsScreen from './screens/bills.screen';
-import GroceriesScreen from './screens/groceries.screen';
 import EditProfileScreen from './screens/editprofile.screen';
 import RoommatesScreen from './screens/roommates.screen';
 import ViewRoommateScreen from './screens/viewroommate.screen';
@@ -15,7 +14,8 @@ import CalendarScreen from './screens/calendar.screen';
 import AddEventScreen from './screens/addevent.screen';
 import ChoresScreen from './screens/chores.screen';
 import AddChoreScreen from './screens/addchore.screen';
-import AddGroceriesScreen from './screens/addgroceries.screen';
+import AddGroceriesScreen from './screens/addgroceries';
+import GroceryScreen from './screens/groceryscreen';
 
 const Splash = {
   screen: SplashScreen,
@@ -66,7 +66,7 @@ const Bills = {
   }
 }
 const Groceries = {
-  screen: GroceriesScreen,
+  screen: GroceryScreen,
   navigationOptions: {
     header: null
   }
