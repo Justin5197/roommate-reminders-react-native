@@ -15,6 +15,8 @@ import CalendarScreen from './screens/calendar.screen';
 import AddEventScreen from './screens/addevent.screen';
 import ChoresScreen from './screens/chores.screen';
 import AddChoreScreen from './screens/addchore.screen';
+import AddGroceriesScreen from './screens/addgroceries.screen';
+
 const Splash = {
   screen: SplashScreen,
   navigationOptions: {
@@ -111,6 +113,12 @@ const AddChore = {
     header: null
   }
 }
+const AddGroceries = {
+  screen: AddGroceriesScreen,
+  navigationOptions: {
+    header: null
+  }
+}
 
 
 const RouteConfig = {
@@ -132,6 +140,7 @@ const AppNavigator = createDrawerNavigator({
   AddEvent: AddEvent,
   Chores: Chores,
   AddChore: AddChore,
+  AddGroceries: AddGroceries,
 
 }, RouteConfig)
 
