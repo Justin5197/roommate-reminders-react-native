@@ -28,20 +28,6 @@ export default class GroceryScreen extends Component {
             this.setState({items});
          });
     }
-    state = {
-        isModalVisible: false
-      }
-    
-      _showModal = () => this.setState({ isModalVisible: true })
-    
-      _hideModal = () => this.setState({ isModalVisible: false })
-    
-      _goToSecondScreen = () => {
-        // First, hide the modal
-        this._hideModal();
-        // Then, navigate to your second screen
-        yourNavigationApi.push('AddGroceriesScreen') 
-      }
     render() {
         const {navigate} = this.props.navigation;
         return (
