@@ -13,12 +13,12 @@ import firebase from 'firebase';
 
 @observer
 export default class EditProfile extends Component {
-  @observable oldEmail = '';
-  @observable oldPass = '';
+  @observable currentEmail = '';
+  @observable currentPass = '';
   @observable firstName = '';
   @observable lastName = '';
   @observable phoneNumber = '';
-  @observable newEmail = '';
+  @observable currentEmail = '';
   @observable newPass = '';
   constructor(props) {
     super(props);
@@ -27,25 +27,41 @@ export default class EditProfile extends Component {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
 
+
+
+reauthenticate = (currentPassword) => {
     var user = firebase.auth().currentUser;
+    var cred = firebase.auth.EmailAuthProvider.credential(
+      user.email, currentPassword);
+  return user.reauthenticateWithCredential(cred);
+}
+changePassword = (currentPassword, newPassword) => {
+  this.reauthenticate(currentPassword).then(() => {
+    var user = firebase.auth().currentUser;
+    user.updatePassword(newPassword).then(() => {
+      console.log("Password updated!");
+    }).catch((error) => { console.log(error); });
+  }).catch((error) => { console.log(error); });
+}
+
 
     var credential = firebase.auth.EmailAuthProvider.credential(
       this.oldEmail,
-      this.oldPass
-    );
+     this.oldPass
+   );
 
-    user.reauthenticateAndRetrieveDataWithCredential(credential)
-    user.updateEmail(this.newEmail)
+    //user.reauthenticateAndRetrieveDataWithCredential(credential)
+  // user.updateEmail(this.newEmail)
 
 
     // const { auth } = this.props.stores
     // const { navigate } = this.props.navigation
     //
-    // auth.saveChanges({email: this.email, password: this.password})
+   auth.saveChanges({email: this.oldEmail, password: this.oldPass})
     //
-    // var userId = firebase.auth().currentUser.uid;
+     var userId = firebase.auth().currentUser.uid;
     //
-    // firebase.database().ref('/users/' + userId).set(
+    firebase.database().ref('/users/' + userId).set()
     //   {
     //     firstName: this.firstName,
     //     lastName: this.lastName,
@@ -65,14 +81,14 @@ export default class EditProfile extends Component {
       <Form>
       <Item style={{marginBottom: 10}} rounded>
         <Input style={{color: "#fff"}}
-          placeholder='Old Email'
+          placeholder='Current Email'
           placeholderTextColor="#fff"
           onChangeText={(oldEmail) => this.oldEmail = oldEmail}/>
       </Item>
       <Item style={{marginBottom: 10}} rounded>
         <Icon style={{color: "#fff"}} name='lock-open' />
         <Input style={{color: "#fff"}}
-          placeholder='Old Password'
+          placeholder='Current Password'
           placeholderTextColor="#fff"
           secureTextEntry={true}
           onChangeText={(oldPass) => this.oldPass = oldPass}/>
@@ -97,14 +113,14 @@ export default class EditProfile extends Component {
         </Item>
         <Item style={{marginBottom: 10}} rounded>
           <Input style={{color: "#fff"}}
-            placeholder='New Email'
+            placeholder='Current Email'
             placeholderTextColor="#fff"
             onChangeText={(newEmail) => this.newEmail = newEmail}/>
         </Item>
         <Item style={{marginBottom: 10}} rounded>
           <Icon style={{color: "#fff"}} name='lock-open' />
           <Input style={{color: "#fff"}}
-            placeholder='Password'
+            placeholder=' New Password'
             placeholderTextColor="#fff"
             secureTextEntry={true}
             onChangeText={(newPass) => this.newPass = newPass}/>
