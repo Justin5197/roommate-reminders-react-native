@@ -38,8 +38,8 @@ export default class GroceryScreen extends Component {
                     : <Text>No items</Text>
                 }
                 <Button
-        title="Go to Jane's profile"
-        onPress={() => navigate('', {name: 'AddGroceriesScreen'})}
+        title="Add a Grocery Item"
+        onPress={() => navigate('AddGroceries')}
       />
             </View>
         )
