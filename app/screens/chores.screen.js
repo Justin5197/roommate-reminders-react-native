@@ -1,27 +1,47 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native'
+// ListItem.js
 
-import Chores from '../components/chores.component';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button} from 'react-native';
+import ChoresComponent from '../components/chores.component';
+import firebase from 'firebase';
 
-export default class ChoresScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      titleText: ""
-    };
-  }
-  render() {
-    return (
-      <Text style={styles.titleText}>
-        {this.state.titleText}
-      </Text>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  }
-});
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#B6A6BB',
+    }
+  })
+
+//export default class GroceryScreen extends Component {
+export default class ChoresScreen extends Component {
+    state = {
+        items: []
+    }
+
+    componentDidMount() {
+        var userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('/chores/'+userId).on('value', (snapshot) => {
+            let data = snapshot.val();
+            let items = Object.values(data);
+            this.setState({items});
+         });
+    }
+    render() {
+        const {navigate} = this.props.navigation;
+        return (
+            <View style={styles.container}>
+                {
+                    this.state.items.length > 0
+                    ? <ChoresComponent items={this.state.items} />
+                    : <Text>No items</Text>
+                }
+                <Button
+        title="Add Chores"
+        onPress={() => navigate('AddChore')}
+      />
+            </View>
+        )
+    }
+}

@@ -1,10 +1,40 @@
-import React, {Component} from 'react'
+// ItemComponent.js
 
+import React, { Component } from 'react';
+import {  View, Text, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
+
+
+const styles = StyleSheet.create({
+    itemsList: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+    },
+    itemtext: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    }
+});
+
+//export default class GroceryComponent extends Component {
 export default class Chores extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static propTypes = {
+      items: PropTypes.array.isRequired
+  };
+
   render() {
-    return null;
+    return (
+      <View style={styles.itemsList}>
+        {this.props.items.map((item, index) => {
+            return (
+                <View key={index}>
+                    <Text style={styles.itemtext}>{item.name}</Text>
+                </View>
+            )
+        })}
+      </View>
+    );
   }
 }

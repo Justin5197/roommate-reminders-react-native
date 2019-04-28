@@ -6,3 +6,10 @@ export const addGrocery =  (item) => {
         name: item
     });
 }
+
+export const addChores =  (item) => {
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/chores/'+userId).push({
+        name: item
+    });
+}
