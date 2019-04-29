@@ -27,9 +27,9 @@ export default class AddChoreScreen extends Component {
     }
     handleSubmit() {
       addChores(this.state.name);
-      AlertIOS.alert(
-        'Item saved successfully'
-       );
+      // AlertIOS.alert(
+      //   'Item saved successfully'
+      //  );
     }
   render() {
     return (

@@ -27,9 +27,9 @@ export default class AddGroceriesScreen extends Component {
     }
     handleSubmit() {
       addGrocery(this.state.name);
-      AlertIOS.alert(
-        'Item saved successfully'
-       );
+      // AlertIOS.alert(
+      //   'Item saved successfully'
+      //  );
     }
   render() {
     return (

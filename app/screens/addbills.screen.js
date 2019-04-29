@@ -9,46 +9,22 @@ import {
   TouchableHighlight,
   AlertIOS
 } from 'react-native';
-import { addBills } from '../services/ItemService';
+
+import AddBills from '../components/addbills.component'
+
 export default class AddBillsScreen extends Component {
   constructor(props) {
       super(props);
-      this.state = {
-        name: ''
-      }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    handleChange(e) {
-      this.setState({
-        name: e.nativeEvent.text
-      });
-    }
-    handleSubmit() {
-      addBills(this.state.name);
-      AlertIOS.alert(
-        'Item saved successfully'
-       );
+      
     }
   render() {
     return (
+
+            
       <View style={styles.main}>
-        <Text style={styles.title}>Add Bills</Text>
-        <TextInput
-              style={styles.itemInput}
-              onChange={this.handleChange}
-            />
-        <TouchableHighlight
-                style = {styles.button}
-                underlayColor= "white"
-                onPress = {this.handleSubmit}
-              >
-              <Text
-                  style={styles.buttonText}>
-                  Add
-              </Text>
-            </TouchableHighlight>
-      </View>
+       <Text style={styles.title}>Add Bill</Text>
+                <AddBills {...this.props}/>
+              </View>
     )
   }
 }
