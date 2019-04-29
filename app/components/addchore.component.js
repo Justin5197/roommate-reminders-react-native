@@ -10,10 +10,3 @@ import firebase from 'firebase';
     return null;
   }
 }
-export const addItem =  (item) => {
-    var userId = firebase.auth().currentUser.uid;
-
-    firebase.database().ref('/chores/'+userId+'/items').push({
-        name: item
-    });
-}

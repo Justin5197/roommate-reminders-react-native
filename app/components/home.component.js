@@ -33,10 +33,10 @@ export default class Home extends Component {
           onPress={() => navigate('Chores')}>
           <Text>Chores</Text>
         </Button>
-        // <Button rounded block style={{marginBottom: 10}}
-        //   onPress={() => navigate('Groceries')}>
-        //   <Text>Groceries</Text>
-        // </Button>
+        <Button rounded block style={{marginBottom: 10}}
+          onPress={() => navigate('Groceries')}>
+          <Text>Groceries</Text>
+        </Button>
         <Button rounded block style={{marginBottom: 10}}
           onPress={() => navigate('EditProfile')}>
           <Text>Edit Profile</Text>

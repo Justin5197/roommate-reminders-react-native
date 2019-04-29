@@ -26,7 +26,7 @@ export default class CreateHousehold extends Component {
 
     var userId = firebase.auth().currentUser.uid
 
-    firebase.database().ref('/households/' + userId).set(
+    firebase.database().ref('/households/' + housePIN).set(
       {
         admins: {
           id: userId
@@ -56,7 +56,12 @@ export default class CreateHousehold extends Component {
           <Input style={{color: "#fff"}}
             placeholder='5 digit House PIN'
             placeholderTextColor="#fff"
-            onChangeText={(housePIN) => this.housePIN = housePIN}/>
+            onChangeText={(housePIN) => {
+              this.housePIN = housePIN,
+              global.housepinNumber = housePIN
+            }
+            }
+              />
         </Item>
         <Button rounded block style={{marginBottom: 10}}
           onPress={this.createHouse.bind(this)}>

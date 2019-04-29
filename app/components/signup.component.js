@@ -40,7 +40,7 @@ export default class SignUp extends Component {
       }
     )
     .then(() => {
-      navigate('Login')
+      navigate('SetHousehold')
     })
   }
 

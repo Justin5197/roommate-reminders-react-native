@@ -19,14 +19,19 @@ export default class SetHousehold extends Component {
     super(props);
   }
 
-  setHouse() {
+  checkHousePIN() {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
-
-
     //var userId = firebase.auth().currentUser.userId
-    var ref = firebase.database().ref('/households/');
-    console.log(ref.key);
+    var ref = firebase.database().ref('/households/').equalTo(this.housePIN).once("value",snapshot => {
+      if (snapshot.exists()){
+        const userData = snapshot.val();
+        console.log("exists!", userData);
+        navigate('Home')
+
+
+      }
+  });
   }
 
   render() {
@@ -36,13 +41,13 @@ export default class SetHousehold extends Component {
       <Form>
         <Item style={{marginBottom: 10}} rounded>
           <Input style={{color: "#fff"}}
-            placeholder='5 digit House PIN'
+            placeholder='Enter Your Given 5 digit House PIN'
             placeholderTextColor="#fff"
-            onChangeText={(housePIN) => this.housePIN = housePIN}/>
+            onChangeText={(housePIN) => {this.housePIN = housePIN, global.housepinNumber = housePIN}}/>
         </Item>
         <Button rounded block style={{marginBottom: 10}}
-          onPress={this.setHouse.bind(this)}>
-          <Text>Set Household</Text>
+          onPress={this.checkHousePIN.bind(this)}>
+          <Text>Enter House</Text>
         </Button>
         <Button rounded block style={{marginBottom: 10}}
           onPress={() => navigate('CreateHousehold')}>
