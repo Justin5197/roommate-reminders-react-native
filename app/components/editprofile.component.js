@@ -57,7 +57,7 @@ changePassword = (currentPassword, newPassword) => {
     // const { auth } = this.props.stores
     // const { navigate } = this.props.navigation
     //
-   auth.saveChanges({email: this.oldEmail, password: this.oldPass})
+   saveChanges({email: this.oldEmail, password: this.oldPass})
     //
      var userId = firebase.auth().currentUser.uid;
     //

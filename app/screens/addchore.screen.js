@@ -34,7 +34,7 @@ export default class AddChoreScreen extends Component {
   render() {
     return (
       <View style={styles.main}>
-        <Text style={styles.title}>Add Item</Text>
+        <Text style={styles.title}>Add Chores</Text>
         <TextInput
               style={styles.itemInput}
               onChange={this.handleChange}
