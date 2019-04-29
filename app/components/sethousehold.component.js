@@ -5,7 +5,7 @@ import {
   Input,
   Icon,
   Text,
-  Form
+  Form,
 } from 'native-base';
 import { observer } from 'mobx-react/native';
 import { observable } from 'mobx';
@@ -22,15 +22,15 @@ export default class SetHousehold extends Component {
   checkHousePIN() {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
-    //var userId = firebase.auth().currentUser.userId
     var ref = firebase.database().ref('/households/'+this.housePIN).once("value",snapshot => {
       if (snapshot.exists()){
         const userData = snapshot.val();
         console.log("exists!", userData);
+        var userId = firebase.auth().currentUser.uid
+        firebase.database().ref('/users/' + userId).update({housePin: this.housePIN});
         navigate('Home')
       }
       else{
-        navigate('Login')
       }
   });
   }

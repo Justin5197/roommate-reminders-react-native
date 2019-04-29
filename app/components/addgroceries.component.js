@@ -9,10 +9,3 @@ export default class AddGroceries extends Component {
     return null;
   }
 }
-export const addItem =  (item) => {
-    var userId = firebase.auth().currentUser.uid;
-
-    firebase.database().ref('/groceries/'+userId+'/items').push({
-        name: item
-    });
-}

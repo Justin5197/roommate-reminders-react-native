@@ -9,6 +9,8 @@ import {
 } from 'native-base';
 import { observer } from 'mobx-react/native';
 import { observable } from 'mobx';
+import firebase from 'firebase';
+
 
 @observer
 export default class Login extends Component {
@@ -24,7 +26,16 @@ export default class Login extends Component {
     const { navigate } = this.props.navigation
     auth.signIn({email: this.email, password: this.password})
       .then(() => {
-        navigate('SetHousehold')
+        var userid = firebase.auth().currentUser.uid;
+        var ref = firebase.database().ref('/users/'+userid).once("value",snapshot => {
+          if (snapshot.hasChild('none')){
+            navigate('Login')
+          }
+          else{
+            global.housePinNumber = this.housePIn;
+            navigate('SetHousehold')
+          }
+        })
       })
   }
   render() {
