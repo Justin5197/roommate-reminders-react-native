@@ -21,7 +21,7 @@ export default class ChoresScreen extends Component {
     }
 
     componentDidMount() {
-        var userId = firebase.auth().currentUser.uid;
+        var userId = global.housepinNumber;;
         firebase.database().ref('/chores/'+userId).on('value', (snapshot) => {
             let data = snapshot.val();
             let items = Object.values(data);

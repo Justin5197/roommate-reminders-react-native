@@ -1,27 +1,44 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native'
-
+import {Text, StyleSheet, View, Button} from 'react-native'
 import Bills from '../components/bills.component';
+import firebase from 'firebase';
 
 export default class BillsScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      titleText: "Here are our bills"
-    };
+  state = {
+    items: []
   }
+
+  componentDidMount() {
+      var userId = global.housepinNumber;;
+      firebase.database().ref('/bills/'+userId).on('value', (snapshot) => {
+          let data = snapshot.val();
+          let items = Object.values(data);
+          this.setState({items});
+       });
+  }
+
   render() {
-    return (
-      <Text style={styles.titleText}>
-        {this.state.titleText}
-      </Text>
-    );
+      const {navigate} = this.props.navigation;
+      return (
+          <View style={styles.container}>
+              {
+                  this.state.items.length > 0
+                  ? <Bills items={this.state.items} />
+                  : <Text>No items</Text>
+              }
+              <Button
+      title="Add Bills"
+      onPress={() => navigate('AddBills')}
+    />
+          </View>
+      )
   }
 }
 
 const styles = StyleSheet.create({
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  }
-});
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: '#B6A6BB',
+    }
+  });

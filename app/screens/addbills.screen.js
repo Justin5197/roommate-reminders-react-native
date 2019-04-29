@@ -1,63 +1,96 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native'
+// AddItem.js
 
-import React, {Component} from 'react';
-import {
-  Container,
-  Content
-} from 'native-base';
+import React, { Component } from 'react';
 import {
   View,
-  ImageBackground,
+  Text,
   StyleSheet,
-  Dimensions
+  TextInput,
+  TouchableHighlight,
+  AlertIOS
 } from 'react-native';
-import { inject } from 'mobx-react';
-
-import AddBills from '../components/addbill.component';
-
-@inject("stores")
+import { addBills } from '../services/ItemService';
 export default class AddBillsScreen extends Component {
   constructor(props) {
-    super(props)
-  }
+      super(props);
+      this.state = {
+        name: ''
+      }
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(e) {
+      this.setState({
+        name: e.nativeEvent.text
+      });
+    }
+    handleSubmit() {
+      addBills(this.state.name);
+      AlertIOS.alert(
+        'Item saved successfully'
+       );
+    }
   render() {
-    const { stores } = this.props
     return (
-      <Container>
-        <View style={styles.container}>
-          <Content scrollEnabled = {false}>
-            <ImageBackground style={styles.loginBackground} source={stores.config.loginBG}>
-              <View style={styles.loginForeground}>
-                <AddBills {...this.props}/>
-              </View>
-            </ImageBackground>
-          </Content>
-        </View>
-      </Container>
+      <View style={styles.main}>
+        <Text style={styles.title}>Add Bills</Text>
+        <TextInput
+              style={styles.itemInput}
+              onChange={this.handleChange}
+            />
+        <TouchableHighlight
+                style = {styles.button}
+                underlayColor= "white"
+                onPress = {this.handleSubmit}
+              >
+              <Text
+                  style={styles.buttonText}>
+                  Add
+              </Text>
+            </TouchableHighlight>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
-  loginBackground: {
+  main: {
     flex: 1,
-    width: null,
-    height: null
+    padding: 30,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#2a8ab7'
   },
-  loginForeground: {
-    flex: 1,
-    marginTop: Dimensions.get('window').height/1.75,
-    paddingTop: 20,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 90,
-    bottom: 0
+  title: {
+    marginBottom: 20,
+    fontSize: 25,
+    textAlign: 'center'
+  },
+  itemInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 8,
+    color: 'white'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#111',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor:'white',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   }
-})
+});

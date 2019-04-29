@@ -9,7 +9,8 @@ export default class AuthStore {
       this.authUser = user
     })
   }
-
+  
+  //auth.store.js
   @action
   signIn({email, password}) {
     if(this.authUser) {

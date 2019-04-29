@@ -16,6 +16,7 @@ import ChoresScreen from './screens/chores.screen';
 import AddChoreScreen from './screens/addchore.screen';
 import AddGroceriesScreen from './screens/addgroceries';
 import GroceryScreen from './screens/groceryscreen';
+import AddBillsScreen from './screens/addbills.screen';
 
 const Splash = {
   screen: SplashScreen,
@@ -120,6 +121,13 @@ const AddGroceries = {
   }
 }
 
+const AddBills = {
+  screen: AddBillsScreen,
+  navigationOptions: {
+    header: null
+  }
+}
+
 
 const RouteConfig = {
   initialRoute: 'Splash'
@@ -138,6 +146,7 @@ const AppNavigator = createDrawerNavigator({
   ViewRoommate: ViewRoommate,
   AddEvent: AddEvent,
   Chores: Chores,
+  AddBills: AddBills,
   AddChore: AddChore,
   AddGroceries: AddGroceries,
 

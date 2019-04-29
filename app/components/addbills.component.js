@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import firebase from 'firebase';
 
-  export default class AddChore extends Component {
+  export default class AddBills extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,8 @@ import firebase from 'firebase';
 export const addItem = (item) => {
   var userId = firebase.auth().currentUser.uid;
 
-  firebase.database().ref('/chores/'+userId+'items').push({
-    name:item
+  firebase.database().ref('/bills/'+userId+'items').push({
+    name: itemName
   });
 }
+  
