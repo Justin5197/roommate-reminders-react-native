@@ -26,7 +26,7 @@ export default class CreateHousehold extends Component {
 
     var userId = firebase.auth().currentUser.uid
 
-    firebase.database().ref('/households/' + housePIN).set(
+    firebase.database().ref('/households/' + this.housePIN).set(
       {
         admins: {
           id: userId
@@ -39,7 +39,7 @@ export default class CreateHousehold extends Component {
       }
     )
     .then(() =>  {
-      navigate('SetHousehold')
+      navigate('Home')
     })
   }
 
@@ -58,7 +58,8 @@ export default class CreateHousehold extends Component {
             placeholderTextColor="#fff"
             onChangeText={(housePIN) => {
               this.housePIN = housePIN,
-              global.housepinNumber = housePIN
+              global.housepinNumber = this.housePIN,
+              console.log(global.housepinNumber)
             }
             }
               />

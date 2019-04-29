@@ -136,7 +136,6 @@ const AppNavigator = createDrawerNavigator({
   EditProfile: EditProfile,
   Roommates: Roommates,
   ViewRoommate: ViewRoommate,
-  Calendar: Calendar,
   AddEvent: AddEvent,
   Chores: Chores,
   AddChore: AddChore,

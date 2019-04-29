@@ -26,10 +26,6 @@ export default class Home extends Component {
           <Text>Bills</Text>
         </Button>
         <Button rounded block style={{marginBottom: 10}}
-          onPress={() => navigate('Calendar')}>
-          <Text>Calendar</Text>
-        </Button>
-        <Button rounded block style={{marginBottom: 10}}
           onPress={() => navigate('Chores')}>
           <Text>Chores</Text>
         </Button>
