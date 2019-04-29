@@ -27,18 +27,17 @@ export default class SignUp extends Component {
     const { auth } = this.props.stores
     const { navigate } = this.props.navigation
 
-    auth.signUp({email: this.email, password: this.password})
-
-    var userId = firebase.auth().currentUser.uid;
-
-    firebase.database().ref('/users/' + userId).set(
-      {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        phoneNumber: this.phoneNumber,
-        email: this.email
-      }
-    )
+    //auth.signUp({email: this.email, password: this.password})
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+    .then((res) => {
+        firebase.database().ref('users/' + res.user.uid).set({
+          firstName: this.firstName,
+          lastName: this.lastName,
+          phoneNumber: this.phoneNumber,
+          email: this.email,
+          housePin: 'none'
+        })
+    })
     .then(() => {
       navigate('SetHousehold')
     })
